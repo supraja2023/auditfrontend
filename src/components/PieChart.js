@@ -33,14 +33,11 @@ const PieChartComponent = () => {
   };
 
   return (
-    <Paper style={{ padding: '20px', textAlign: 'center' }}>
-      <Typography variant="h6">Expenses by Category</Typography>
-      {expenseData && expenseData.length > 0 && (
-        <PieChart series={getChartData()}    width={400}
-        height={200}/>
-      )}
-      {(!expenseData || expenseData.length === 0) && (
-        <Typography>No expense data available</Typography>
+    <Paper style={{  textAlign: 'center' }}>
+      {expenseData.length > 0 ? (
+        <PieChart series={getChartData()} width={400} height={200} />
+      ) : (
+        <Typography></Typography>
       )}
     </Paper>
   );

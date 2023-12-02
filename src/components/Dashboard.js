@@ -29,11 +29,11 @@ const Dashboard = () => {
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
         <Typography variant="h4">Expenses This Month</Typography>
-        <Typography>{currentMonthCost ? `${currentMonthCost}` : 'Loading...'}</Typography>
+        <Typography>{currentMonthCost ? `${currentMonthCost}` : '0'}</Typography>
       </Grid>
       <Grid item xs={12} md={6}>
         <Typography variant="h4">Expenses Last Month</Typography>
-        <Typography>{lastMonthCost ? `${lastMonthCost}` : 'Loading...'}</Typography>
+        <Typography>{lastMonthCost ? `${lastMonthCost}` : '0'}</Typography>
       </Grid>
       <Grid item xs={12}>
         <PieChart />

@@ -9,6 +9,13 @@ export default function SimpleCharts() {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:8000/getApprovedExpensesLast3Months');
+        if (response.data.length === 0) {
+          setChartData({
+            xAxis: [],
+            series: [],
+          });
+          return;
+        }
         const formattedData = response.data.map(entry => ({
           month: entry._id,
           totalAmount: entry.totalAmount,
@@ -37,15 +44,31 @@ export default function SimpleCharts() {
     };
 
     fetchData();
-  }, []); // The empty dependency array ensures the effect runs once when the component mounts
+  }, []); 
 
   return (
-    <BarChart
-      xAxis={chartData.xAxis}
-      series={chartData.series}
-      width={300}
-      height={300}
-      colors={barColors}
-    />
+    // <BarChart
+    //   xAxis={chartData.xAxis}
+    //   series={chartData.series}
+    //   width={300}
+    //   height={300}
+    //   colors={barColors}
+    // />
+    <div>
+    {chartData.xAxis.length > 0 && chartData.series.length > 0 ? (
+      <BarChart
+        xAxis={chartData.xAxis}
+        series={chartData.series}
+        width={300}
+        height={300}
+        colors={barColors}
+      />
+    ) : (
+      <div>
+        {/* Render a message or placeholder content when there is no data */}
+        
+      </div>
+    )}
+  </div>
   );
 }
